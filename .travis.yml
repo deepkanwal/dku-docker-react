@@ -7,3 +7,16 @@ before_install:
     
 script:
   - docker run deepkanwal/dku-docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "dku-docker-react"
+  env: "DkuDockerReact-env"
+  bucket_name: "elasticbeanstalk-us-east-1-381951348145"
+  bucket_path: "dku-docker-react"
+  on: 
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
